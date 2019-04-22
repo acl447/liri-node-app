@@ -7,7 +7,7 @@ const keys = require("./keys.js");
 
 const Spotify = require("node-spotify-api");
 
-
+const fs = require("fs");
 
 
 
@@ -134,4 +134,32 @@ else if (userInput1 === "movie-this") {
             });
 
     }
+}
+
+else if (userInput1 === "do-what-it-says") {
+
+  fs.readFile("random.txt", "utf8", function(err, data) {
+
+    if (err) throw err;
+    //console.log(data);
+
+    let dataArray = data.split(",");
+
+    userInput1 = dataArray[0];
+
+    userInput2 = dataArray[1];
+
+    console.log(userInput1);
+
+    console.log(userInput2);
+
+ 
+
+
+  });
+
+
+
+
+
 }
