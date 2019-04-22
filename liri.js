@@ -69,18 +69,26 @@ else if (userInput1 === "spotify-this-song") {
 
             
            
-        console.log("Artist(s): " + JSON.stringify(theSign.album.artists[0].name), "\nSong's name: ", "\nPreview link of song: ", "\nAlbum song is from: " + theSign.album.name); 
+        console.log("Artist(s): " + JSON.stringify(theSign.artists[0].name), "\nSong's name: " + theSign.name, "\nPreview link of song: " + theSign.preview_url, "\nAlbum song is from: " + theSign.album.name); 
           });
 
     }
     else {
 
-        spotify.search({ type: 'track', query: userInput2 }, function(err, data) {
+        songNameInput = userInput2.replace(/\s/g, "+");
+
+        console.log(songNameInput);
+
+        spotify.search({ type: 'track', query: songNameInput }, function(err, data) {
             if (err) {
               return console.log('Error occurred: ' + err);
             }
+
+            let song = data.tracks.items[9];
+
+            
            
-          console.log(data); 
+        console.log("Artist(s): " + JSON.stringify(song.artists[0].name), "\nSong's name: " + song.name, "\nPreview link of song: " + song.preview_url, "\nAlbum song is from: " + song.album.name); 
           });
 
 
