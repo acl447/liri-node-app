@@ -24,15 +24,19 @@ let userInput2 = process.argv.slice(3, process.argv.length).join(" ");
 
 
 function concertThis(userInput2) {
+   
 
     if (userInput2) {
+
+
 
         artistInput = userInput2.replace(/\s/g, "+");
 
 
         axios.get("https://rest.bandsintown.com/artists/" + artistInput + "/events?app_id=codingbootcamp")
             .then(function (response) {
-
+                  console.log("RESPONSE");  
+                console.log(response);
                 let datetime = response.data[0].datetime;
 
                 let dateFormat = "YYYY-MM-DD";
@@ -55,49 +59,47 @@ function concertThis(userInput2) {
 
 };
 
-// function spotifyThis(userInput2) {
+function spotifyThis(userInput2) {
 
-//     let spotify = new Spotify(keys.spotify);
+    let spotify = new Spotify(keys.spotify);
 
-//     if (userInput2 === "") {
+    if (userInput2 === "") {
 
-//         spotify.search({ type: 'track', query: 'The Sign' }, function(err, data) {
-//             if (err) {
-//               return console.log('Error occurred: ' + err);
-//             }
+        spotify.search({ type: 'track', query: 'The Sign' }, function(err, data) {
+            if (err) {
+              return console.log('Error occurred: ' + err);
+            }
 
-//             let theSign = data.tracks.items[9];
-
-
-
-//         console.log("Artist(s): " + JSON.stringify(theSign.artists[0].name), "\nSong's name: " + theSign.name, "\nPreview link of song: " + theSign.preview_url, "\nAlbum song is from: " + theSign.album.name); 
-//           });
-
-//     }
-//     else if (userInput2 !== "") {
-
-//         songNameInput = userInput2.replace(/\s/g, "+");
-
-//         console.log(songNameInput);
-
-//         spotify.search({ type: 'track', query: songNameInput }, function(err, data) {
-//             if (err) {
-//               return console.log('Error occurred: ' + err);
-//             }
-
-//             let song = data.tracks.items[9];
+            let theSign = data.tracks.items[9];
 
 
 
-//         console.log("Artist(s): " + JSON.stringify(song.artists[0].name), "\nSong's name: " + song.name, "\nPreview link of song: " + song.preview_url, "\nAlbum song is from: " + song.album.name); 
-//           });
+        console.log("Artist(s): " + JSON.stringify(theSign.artists[0].name), "\nSong's name: " + theSign.name, "\nPreview link of song: " + theSign.preview_url, "\nAlbum song is from: " + theSign.album.name); 
+          });
+
+    }
+    else if (userInput2 !== "") {
+
+        songNameInput = userInput2.replace(/\s/g, "+");
+
+        spotify.search({ type: 'track', query: songNameInput }, function(err, data) {
+            if (err) {
+              return console.log('Error occurred: ' + err);
+            }
+
+            let song = data.tracks.items[9];
 
 
 
-//     }
+        console.log("Artist(s): " + JSON.stringify(song.artists[0].name), "\nSong's name: " + song.name, "\nPreview link of song: " + song.preview_url, "\nAlbum song is from: " + song.album.name); 
+          });
 
 
-// };
+
+    }
+
+
+};
 
 
 
@@ -153,44 +155,9 @@ if (userInput1 === "concert-this") {
 }
 
 else if (userInput1 === "spotify-this-song") {
-    let spotify = new Spotify(keys.spotify);
 
-    if (userInput2 === "") {
+    spotifyThis(userInput2);
 
-        spotify.search({ type: 'track', query: 'The Sign' }, function (err, data) {
-            if (err) {
-                return console.log('Error occurred: ' + err);
-            }
-
-            let theSign = data.tracks.items[9];
-
-
-
-            console.log("Artist(s): " + JSON.stringify(theSign.artists[0].name), "\nSong's name: " + theSign.name, "\nPreview link of song: " + theSign.preview_url, "\nAlbum song is from: " + theSign.album.name);
-        });
-
-    }
-    else {
-
-        songNameInput = userInput2.replace(/\s/g, "+");
-
-        console.log(songNameInput);
-
-        spotify.search({ type: 'track', query: songNameInput }, function (err, data) {
-            if (err) {
-                return console.log('Error occurred: ' + err);
-            }
-
-            let song = data.tracks.items[9];
-
-
-
-            console.log("Artist(s): " + JSON.stringify(song.artists[0].name), "\nSong's name: " + song.name, "\nPreview link of song: " + song.preview_url, "\nAlbum song is from: " + song.album.name);
-        });
-
-
-
-    }
 }
 
 else if (userInput1 === "movie-this") {
@@ -204,7 +171,7 @@ else if (userInput1 === "do-what-it-says") {
     fs.readFile("random.txt", "utf8", function (err, data) {
 
         if (err) throw err;
-        //console.log(data);
+    
 
         let dataArray = data.split(",");
 
@@ -212,11 +179,15 @@ else if (userInput1 === "do-what-it-says") {
 
         userInput2 = dataArray[1];
 
-        //console.log(userInput1);
 
-        //console.log(userInput2);
+        if (userInput1 === "spotify-this-song") {
 
-        if (userInput1 === "movie-this") {
+
+            spotifyThis(userInput2);
+            
+        }
+
+        else if (userInput1 === "movie-this") {
 
             movieThis(userInput2);
 
@@ -224,60 +195,15 @@ else if (userInput1 === "do-what-it-says") {
 
         else if (userInput1 === "concert-this") {
 
-            
+        
 
-            concertThis(userInput2);
+            let concertArtist = userInput2.replace(/\s/g, "+");
+
+            concertThis(concertArtist);
 
     
 
         }
-
-        else if (userInput1 === "spotify-this-song") {
-            let spotify = new Spotify(keys.spotify);
-
-            if (userInput2 === "") {
-
-                spotify.search({ type: 'track', query: 'The Sign' }, function (err, data) {
-                    if (err) {
-                        return console.log('Error occurred: ' + err);
-                    }
-
-                    let theSign = data.tracks.items[9];
-
-
-
-                    console.log("Artist(s): " + JSON.stringify(theSign.artists[0].name), "\nSong's name: " + theSign.name, "\nPreview link of song: " + theSign.preview_url, "\nAlbum song is from: " + theSign.album.name);
-                });
-
-            }
-            else {
-
-                songNameInput = userInput2.replace(/\s/g, "+");
-
-                //console.log(songNameInput);
-
-                spotify.search({ type: 'track', query: songNameInput }, function (err, data) {
-                    if (err) {
-                        return console.log('Error occurred: ' + err);
-                    }
-
-                    let song = data.tracks.items[9];
-
-
-
-                    console.log("Artist(s): " + JSON.stringify(song.artists[0].name), "\nSong's name: " + song.name, "\nPreview link of song: " + song.preview_url, "\nAlbum song is from: " + song.album.name);
-                });
-
-
-
-            }
-        }
-
-        // else if (userInput1 === "movie-this") {
-
-        //     movieThis(userInput2);
-
-        // }
 
 
 
