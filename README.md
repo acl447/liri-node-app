@@ -16,6 +16,8 @@ Then, in your terminal/bash window:
 
 For information on a concert's date, venue name and venue location, type "node liri.js concert-this <artist/band name here>" and run the app:
 
+(concert-screenshot.png)
+
 For information on a Spotify song's artist(s), name, preview link and album name, type "node liri.js spotify-this-song <song name here>" and run the app:
 
 For information on a movie's title, year, IMDb rating, Rotten Tomatoes rating, country, language, plot synopsis and actors, type "node liri.js movie-this <movie name here>" and run the app:

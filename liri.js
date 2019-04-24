@@ -35,8 +35,7 @@ function concertThis(userInput2) {
 
         axios.get("https://rest.bandsintown.com/artists/" + artistInput + "/events?app_id=codingbootcamp")
             .then(function (response) {
-                  console.log("RESPONSE");  
-                console.log(response);
+                  
                 let datetime = response.data[0].datetime;
 
                 let dateFormat = "YYYY-MM-DD";
