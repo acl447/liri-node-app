@@ -14,9 +14,7 @@ SPOTIFY_SECRET=your-spotify-secret
 
 Then, in your terminal/bash window:
 
-For information on a concert's date, venue name and venue location, type "node liri.js concert-this <artist/band name here>" and run the app:
-
-(concert-screenshot.png)
+For information on a concert's date, venue name and venue location, type "node liri.js concert-this <artist/band name here>" and run the app: [Click here for image](concert-screenshot.png)
 
 For information on a Spotify song's artist(s), name, preview link and album name, type "node liri.js spotify-this-song <song name here>" and run the app:
 
