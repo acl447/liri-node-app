@@ -9,7 +9,10 @@ Then, in the project folder, create a file named .env and add the following to i
 # Spotify API keys
 
 SPOTIFY_ID=your-spotify-id
+
 SPOTIFY_SECRET=your-spotify-secret
+
+Then be sure to install the required packages by typing "npm install" in your terminal/bash window.
 
 
 Then, in your terminal/bash window:
