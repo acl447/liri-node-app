@@ -21,7 +21,6 @@ For information on a concert's date, venue name and venue location, type "node l
 
 <img width="718" alt="concert-screenshot" src="https://user-images.githubusercontent.com/44036798/57203045-1668f980-6f61-11e9-88b3-fe67cfb55505.png">
 
-
 For information on a Spotify song's artist(s), name, preview link and album name, type "node liri.js spotify-this-song <song name here>" and run the app: 
 
 <img width="747" alt="spotify-screenshot" src="https://user-images.githubusercontent.com/44036798/57203054-2a146000-6f61-11e9-8e16-fff22c5538f4.png">
